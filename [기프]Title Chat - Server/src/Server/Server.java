@@ -87,11 +87,11 @@ public class Server{
 					boolean exist = false; //이미 접속중인지 확인여부
 					for(MySocket client : clients.keySet()) { //접속된 클라이언트 목록에서 탐색
 						//접속된 클라이언트 목록중에 새로 접속한 클라이언트의 IP와 동일한 값이 있다면
-						//if(client.socket.getInetAddress().toString().equals(socket.getInetAddress().toString())) {
-						//	s.sendMessage("FAL§이미 동일한 IP에서 접속되어 있습니다."); //거부 메시지 전달
-						//	exist = true; //접속  거부설정
-						//	break;
-						//}						
+						if(client.socket.getInetAddress().toString().equals(socket.getInetAddress().toString())) {
+							s.sendMessage("FAL§이미 동일한 IP에서 접속되어 있습니다."); //거부 메시지 전달
+							exist = true; //접속  거부설정
+							break;
+						}						
 					}
 					if(!exist) { //접속이 거부되지 않았다면
 						server.clients.put(s, null); //클라이언트 목록에 추가
